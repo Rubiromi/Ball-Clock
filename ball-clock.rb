@@ -10,6 +10,25 @@ class BallClock
     @count = 0
   end
 
+  def run_simulation(num_of_minutes = 0)
+    if num_of_minutes == 0
+      loop do
+        one_cycle
+        @count += 1
+        break if @queue == @test
+      end
+      puts "#{@balls} balls cycle after #{(@count / (24 * 60))} days."
+    else
+      num_of_minutes.times do
+        one_cycle
+        @count += 1
+      end
+      puts "{\"Min\": #{@one}, \"FiveMin\": #{@five} , \"Hour\": #{@sixty}, \"Main\": #{@queue}}"
+    end
+  end
+
+  private
+
   def one_cycle
     ball = get_next_ball
 
@@ -38,23 +57,6 @@ class BallClock
 
   def get_next_ball
     @queue.shift
-  end
-
-  def run_simulation(num_of_minutes = 0)
-    if num_of_minutes == 0
-      loop do
-        one_cycle
-        @count += 1
-        break if @queue == @test
-      end
-      puts "#{@balls} balls cycle after #{(@count / (24 * 60))} days."
-    else
-      num_of_minutes.times do
-        one_cycle
-        @count += 1
-      end
-      puts "{\"Min\": #{@one}, \"FiveMin\": #{@five} , \"Hour\": #{@sixty}, \"Main\": #{@queue}}"
-    end
   end
 end
 
