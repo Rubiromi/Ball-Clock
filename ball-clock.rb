@@ -34,7 +34,6 @@ class BallClock
         end
       end
     end
-    puts "#{@one} - #{@five} - #{@sixty}"
   end
 
   def get_next_ball
@@ -48,16 +47,16 @@ class BallClock
         @count += 1
         break if @queue == @test
       end
-      puts "#{@balls} balls cycle after #{@count / 2} days."
+      puts "#{@balls} balls cycle after #{(@count / (24 * 60))} days."
     else
       num_of_minutes.times do
         one_cycle
         @count += 1
       end
-      puts "{Min: #{@one}, FiveMin: #{@five} , Hour: #{@sixty}, Main: #{@queue}}"
+      puts "{\"Min\": #{@one}, \"FiveMin\": #{@five} , \"Hour\": #{@sixty}, \"Main\": #{@queue}}"
     end
   end
 end
 
 bc = BallClock.new(30)
-bc.run_simulation()
+bc.run_simulation(325)
